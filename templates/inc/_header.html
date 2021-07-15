@@ -1,0 +1,19 @@
+<header class="header">
+    <div style="text-align: right;">
+            <p><a href="{% url 'schema-swagger-ui' %}">API Сайта</a></p>
+        {% if request.user.is_authenticated %}
+            <p><a href="{%url 'pokemon_app:user_profile'  %}">Профиль</a></p>
+            <p><a href="{% url 'logout' %}">Выйти</a></p>
+        {% else %}
+            <p><a href="{% url 'login' %}">Войти в систему</a></p>
+            <p><a href="{% url 'register' %}">Зарегистрироваться</a></p>
+        {% endif %}
+    </div>
+    <div class="container">
+        <div class="row" >
+            <div>
+                <h2 style="text-align:center; color: blue;"><a href="{% url 'pokemon_app:pokemon_list' %}">Pokemon World</a></h2>
+            </div>
+        </div>
+    </div>
+</header>

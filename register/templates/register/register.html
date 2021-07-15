@@ -1,0 +1,40 @@
+{%  extends "base.html" %}
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+    <form method="POST" class="form-group" style="padding: 8px; border-radius: 4px; border: 1px solid black;">
+        <h3 style="text-align: center">Регистрация</h3>
+        {% csrf_token %}
+        <table style="margin-left: auto; margin-right: auto;">
+
+        <tr>
+          <td>{{ form.username.label_tag }}</td>
+          <td style="padding-bottom: 1em;">{{ form.username }}</td>
+        </tr>
+
+        <br>
+        <tr>
+
+          <td>{{ form.email.label_tag }}</td>
+          <td style="padding-bottom: 1em;">{{ form.email }}</td>
+        </tr>
+
+        <br>
+        <tr>
+
+          <td>{{ form.password1.label_tag }}</td>
+          <td style="padding-bottom: 1em;">{{ form.password1 }}</td>
+        </tr>
+
+        <br>
+
+        <tr>
+          <td>{{ form.password2.label_tag }}</td>
+          <td style="padding-bottom: 1em;">{{ form.password2 }}</td>
+        </tr>
+
+        </table>
+
+        <button type="submit" class="btn btn-success" style="width:30%; margin-left:35%; margin-right:35%;">Зарегистрироваться</button>
+    </form>
+{% endblock %}

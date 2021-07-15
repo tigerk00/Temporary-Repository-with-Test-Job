@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Logout :: {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<div style="text-align: center; padding: 8px; border-radius: 4px; border: 1px solid black;">
+	<h4  style="padding-bottom: 1em;">Вы успешно вышли из системы!</h4>
+	<h4  style="padding-bottom: 1em;"><a href="{% url 'login'%}">Click here to login again.</a></h4>
+	<h4><a href="{% url 'register'%}">Click here to register.</a></h4>
+</div>
+{% endblock %}

@@ -1,0 +1,84 @@
+{%  extends "base.html" %}
+{% load mathfilters %}
+
+{% block title %}Список игроков и их покемоны{% endblock %}
+
+{% block content %}
+<style>
+details > summary {
+  text-align:center;
+  width: 200px;
+  background-color: #eeeeee;
+  border: none;
+  box-shadow: 1px 1px 2px #bbbbbb;
+  cursor: pointer;
+}
+
+details > p {
+  width: 200px;
+  background-color: #eeeeee;
+  padding: 4px;
+  margin: 0;
+  box-shadow: 1px 1px 2px black;
+}
+
+</style>
+
+<body>
+
+
+<details style="margin-top: 50px; margin-bottom: 50px;">
+  <summary>Список всех игроков</summary>
+  {% for user in users %}
+  <p><a href="#{{ user }}">{{user}}</a></p>
+  {% endfor %}
+</details>
+
+
+<div class="grid">
+{% for user in users %}
+	</div>
+	<div class = "row" style="text-align:center; margin-left: 1px; margin-right: 1px;">
+		<h3 id="{{user}}">Покемоны игрока <b>{{user}}</b> </h3>
+		{% if user.pokemons.all %}
+		{% for p in user.pokemons.all %}
+			<div class="col-md-2 col-md-offset-1"   style="text-align:center; border-style: dotted; margin: 0 auto;">
+				<img src="{{p.image.url}}" style="width: 50%; height: 50%;">
+				<p>ID: {{p.id}}</p>
+				<p>Имя: {{p.name}}</p>
+				<p>Рост(м): {{p.height|div:10}}</p>
+				<p>Вес(кг): {{p.weight|div:10}}</p>
+				<p>Бозовый уровень счастья: {{p.base_happiness}}</p>
+				<p>Коэффициент улова: {{p.capture_rate}}</p>
+
+				{% if p.has_gender_differences == true %}
+				<p>Есть отличия в зависимости от стати: Да</p>
+				{% else %}
+				<p>Есть отличия в зависимости от стати: Нет</p>
+				{% endif  %}
+
+				{% if p.is_baby == true %}
+				<p>Маленький: Да</p>
+				{% else %}
+				<p>Маленький: Нет</p>
+				{% endif  %}
+
+				{% if p.is_legendary == true %}
+				<p>Лагендарный: Да</p>
+				{% else %}
+				<p>Лагендарный: Нет</p>
+				{% endif  %}
+
+				{% if p.is_mythical == true %}
+				<p>Мифический: Да</p>
+				{% else %}
+				<p>Мифический: Нет</p>
+				{% endif  %}
+	</div>
+		{% endfor %}
+		{% else %}
+		<h3 style="text-align: left; border-style: dotted;">У <b>{{user}}</b> пока нет никого в комманде :(</h3>
+		{% endif %}
+{% endfor %}
+</body>
+{% endblock %}

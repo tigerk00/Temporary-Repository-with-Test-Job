@@ -1,0 +1,74 @@
+{%  extends "base.html" %}
+{% load mathfilters %}
+
+{% block title %}
+	Profile :: {{ user.get_username }}
+{% endblock %}
+
+{% block content %}
+<body>
+	<div style="text-align:center;">
+		<h3>Ваш профиль игрока ({{user}})</h3>
+		<form class="was_validated" method="post">
+			{% csrf_token %}
+			<input type="submit" name="more" style="background-color: #f9484a; background-image: linear-gradient(315deg, #f9484a 0%, #fbd72b 74%);" value="Искать еще новых покемонов(это займет некоторое время)">
+		</form>
+	</div>
+	{% for p in pokemons %}
+	<div class="col-md-2 col-md-offset-1"   style="text-align:center; border: 3px double; margin: 0 auto;">
+
+		<img src="{{p.image.url}}" style="width: 50%; height: 50%;">
+		<p>ID: {{p.id}}</p>
+		<p>Имя: {{p.name}}</p>
+		<p>Рост(м): {{p.height|div:10}}</p>
+		<p>Вес(кг): {{p.weight|div:10}}</p>
+		<p>Бозовый уровень счастья: {{p.base_happiness}}</p>
+		<p>Коэффициент улова: {{p.capture_rate}}</p>
+
+		{% if p.has_gender_differences == true %}
+		<p>Есть отличия в зависимости от стати: Да</p>
+		{% else %}
+		<p>Есть отличия в зависимости от стати: Нет</p>
+		{% endif  %}
+
+		{% if p.is_baby == true %}
+		<p>Маленький: Да</p>
+		{% else %}
+		<p>Маленький: Нет</p>
+		{% endif  %}
+
+		{% if p.is_legendary == true %}
+		<p>Лагендарный: Да</p>
+		{% else %}
+		<p>Лагендарный: Нет</p>
+		{% endif  %}
+
+		{% if p.is_mythical == true %}
+		<p>Мифический: Да</p>
+		{% else %}
+		<p>Мифический: Нет</p>
+		{% endif  %}
+
+		<p>У кого из игроков он в комманде:</p>
+
+<!--		<b>{% for us in p.user.all %}-->
+<!--				{{ us.username }}-->
+<!--			{% endfor %}-->
+<!--		</b>-->
+
+
+		<form class="was_validated" method="post">
+		{% csrf_token %}
+		<input type="hidden" id="Id" name="pokeid" value="{{p.id}}">
+		{% if user in p.user.all %}
+		<input type="submit" name="release" style="background-color: red; color: white;" value="Освободить!">
+		<input type="submit" name="catch" style="background-color: green; color: white;" value="Уже пойман!" disabled>
+		{% else %}
+		<input type="submit" name="release" style="background-color: red; color: white;" value="Eще не пойман!" disabled>
+		<input type="submit" name="catch" style="background-color: green; color: white;" value="Поймать!">
+		{% endif %}
+		</form>
+	</div>
+	{% endfor %}
+</body>
+{% endblock %}
