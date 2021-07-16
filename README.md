@@ -6,7 +6,7 @@
 <h3>Установка</h3>
 <p>Вам понадобится:</p>
 <ul>
-  <li>Python 3.6+, PostgreSQP, Django 3.x, DRF.</li>
+  <li>Python 3.6+, PostgreSQL, Django 3.x, DRF.</li>
   <li>Cкачать репозиторий(копировать) с помощью github или git - git clone https://github.com/tigerk00/Temporary-Repository-with-Test-Job.git</li>
   <li>Установить необходимые библиотеки `python -m pip install -r requirements.txt`</li>
 </ul>  
