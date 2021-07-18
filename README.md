@@ -9,6 +9,7 @@
   <li>Python 3.6+, PostgreSQL, Django 3.x, DRF.</li>
   <li>Cкачать репозиторий(копировать) с помощью github или git - git clone https://github.com/tigerk00/Temporary-Repository-with-Test-Job.git</li>
   <li>Использовать команду `docker-compose up --build`</li>
+  <li>Запустить локальный сервер `http://localhost:8000/`</li>
 </ul>  
 <h3>Изображения приложения:</h3>
 <p>Профиль игрока с возможностью формировать команду и искать новых покемонов:</p>
